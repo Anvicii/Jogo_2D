@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private bool isGrounded = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,10 +21,26 @@ public class Player : MonoBehaviour
 
         rb.linearVelocity = new Vector2(moveHorizontal * speed, rb.linearVelocity.y); //Vai aplicar a velocidade horizontal ao Rigidbody2D
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-          rb.AddForce(new Vector2(0f, 5f), ForceMode2D.Impulse); //Vai aplicar uma força vertical ao Rigidbody2D
+            rb.AddForce(new Vector2(0f, 5f), ForceMode2D.Impulse); //Vai aplicar uma força vertical ao Rigidbody2D
         }
-    
+
+    }
+
+    void OnCollisionEnter2D( Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true; //Vai reconhecer quando o jogador estiver no chão
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false; //Vai reconhecer quando o jogador não estiver no chão
+        }
     }
 }
