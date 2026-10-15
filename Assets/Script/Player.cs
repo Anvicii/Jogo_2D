@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 
     private bool isGrounded = false;
 
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Dano"))
         {
             SceneManager.LoadScene(0);
+
         }
     }
 
