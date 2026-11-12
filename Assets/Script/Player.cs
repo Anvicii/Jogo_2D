@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     private bool isGrounded = false;
 
+    public MenuScene menu;
 
 
     void Start()
@@ -39,8 +40,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Dano"))
         {
-            SceneManager.LoadScene(0);
-
+          menu.MostrarGameOver(); //Vai mostrar o painel de Game Over quando o jogador colidir com um objeto com a tag "Dano"
         }
     }
 
